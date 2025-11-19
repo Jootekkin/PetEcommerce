@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PetEcommerce.Domain\PetEcommerce.Domain.csproj" />
+    <ProjectReference Include="..\PetEcommerce.Service\PetEcommerce.Service.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -14,4 +14,11 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PetEcommerce.Core\PetEcommerce.Core.csproj" />
+    <ProjectReference Include="..\PetEcommerce.Domain\PetEcommerce.Domain.csproj" />
+    <ProjectReference Include="..\PetEcommerce.Infrastrcure\PetEcommerce.Infrastrcure.csproj" />
+    <ProjectReference Include="..\PetEcommerce.Service\PetEcommerce.Service.csproj" />
+  </ItemGroup>
+
 </Project>
