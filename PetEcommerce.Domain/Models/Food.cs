@@ -5,8 +5,8 @@ namespace PetEcommerce.Domain.Models
     public class Food : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
-        [ForeignKey("Brand")]
         public string Description { get; set; } = string.Empty;
+        [ForeignKey("Brand")]
         public Guid BrandId { get; set; }
         public virtual Brand? Brand { get; set; } // e.g., "Acme Pet Foods"
         [ForeignKey("Flavor")]
