@@ -9,19 +9,24 @@ namespace PetEcommerce.Domain.BaseReponse
             return new BaseResponse<T>(data, true, HttpStatusCode.OK, "Operation completed successfully.");
         }
 
-        public BaseResponse<T> Failure<T>(T data, HttpStatusCode statusCode, string errorMessage)
+        public BaseResponse<T> Failure<T>(HttpStatusCode statusCode, string errorMessage)
         {
-            return new BaseResponse<T>(data, false, statusCode, errorMessage);
+            return new BaseResponse<T>(false, statusCode, errorMessage);
         }
 
-        public BaseResponse<T> Created<T>(T data)
+        public BaseResponse<T> Created<T>()
         {
-            return new BaseResponse<T>(data, true, HttpStatusCode.Created, "Resource created successfully.");
+            return new BaseResponse<T>(true, HttpStatusCode.Created, "Resource created successfully.");
         }
 
-        public BaseResponse<T> Updated<T>(T data)
+        public BaseResponse<T> Updated<T>()
         {
-            return new BaseResponse<T>(data, true, HttpStatusCode.Accepted, "Resource updated successfully.");
+            return new BaseResponse<T>(true, HttpStatusCode.Accepted, "Resource updated successfully.");
+        }
+
+        public BaseResponse<T> Deleted<T>()
+        {
+            return new BaseResponse<T>(true, HttpStatusCode.Accepted, "Resource updated successfully.");
         }
 
         public BaseResponse<T> NotFound<T>()
