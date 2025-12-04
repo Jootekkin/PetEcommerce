@@ -15,7 +15,7 @@ namespace PetEcommerce.Domain.Models
         public DateTime DateOfBirth { get; set; }
         public string Gender { get; set; } = string.Empty;
         public decimal Price { get; set; }
-
+        public string ImageUrl { get; set; } = string.Empty;
 
     }
 }

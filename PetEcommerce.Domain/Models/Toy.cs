@@ -9,5 +9,6 @@
         public string Color { get; set; } = string.Empty;
         public string Size { get; set; } = string.Empty;
         public bool IsDurable { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
     }
 }
