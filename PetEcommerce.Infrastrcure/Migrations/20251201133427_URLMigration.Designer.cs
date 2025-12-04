@@ -12,8 +12,8 @@ using PetEcommerce.Infrastrcure.Data;
 namespace PetEcommerce.Infrastrcure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251126105636_initCreate")]
-    partial class initCreate
+    [Migration("20251201133427_URLMigration")]
+    partial class URLMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,10 +66,15 @@ namespace PetEcommerce.Infrastrcure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("SpeciesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SpeciesId");
 
                     b.ToTable("Breeds");
                 });
@@ -121,6 +126,10 @@ namespace PetEcommerce.Infrastrcure.Migrations
                     b.Property<Guid>("FlavorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -167,6 +176,10 @@ namespace PetEcommerce.Infrastrcure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -230,6 +243,10 @@ namespace PetEcommerce.Infrastrcure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDurable")
                         .HasColumnType("bit");
 
@@ -254,6 +271,15 @@ namespace PetEcommerce.Infrastrcure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Toys");
+                });
+
+            modelBuilder.Entity("PetEcommerce.Domain.Models.Breed", b =>
+                {
+                    b.HasOne("PetEcommerce.Domain.Models.Species", "Species")
+                        .WithMany("Breeds")
+                        .HasForeignKey("SpeciesId");
+
+                    b.Navigation("Species");
                 });
 
             modelBuilder.Entity("PetEcommerce.Domain.Models.Food", b =>
@@ -311,6 +337,8 @@ namespace PetEcommerce.Infrastrcure.Migrations
 
             modelBuilder.Entity("PetEcommerce.Domain.Models.Species", b =>
                 {
+                    b.Navigation("Breeds");
+
                     b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618
