@@ -2,7 +2,7 @@
 {
     public class PagedResult<T>
     {
-        public T? Items { get; set; }
+        public List<T?> Items { get; set; }
         public int TotalCount { get; set; }
         public int PageNumber { get; set; } = 0;
         public int PageSize { get; set; } = 0;
@@ -12,10 +12,10 @@
 
         public PagedResult()
         {
-            //Items = default(T);
+            Items = new List<T?>();
         }
 
-        public PagedResult(T items, int totalCount, int pageNumber, int pageSize)
+        public PagedResult(List<T?> items, int totalCount, int pageNumber, int pageSize)
         {
             Items = items;
             TotalCount = totalCount;

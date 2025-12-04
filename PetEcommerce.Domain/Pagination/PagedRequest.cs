@@ -1,16 +1,23 @@
 ﻿using PetEcommerce.Domain.Models;
 using System.Linq.Expressions;
+using System.Text.Json.Serialization;
 
 namespace PetEcommerce.Domain.Pagination
 {
     public class BasePagedRequest<T> where T : BaseEntity
     {
+        [JsonIgnore]
         public int MaxPageSize { get; set; } = 100;
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public string? SortBy { get; set; }
         public string? SortDirection { get; set; } = "ASC";
-        public List<Expression<Func<T, bool>>>? FilterBy { get; set; }
+        [JsonIgnore]
+        public List<Expression<Func<T, bool>>> FilterBy { get; set; } = new List<Expression<Func<T, bool>>>();
 
+        public void AddFilter(Expression<Func<T, bool>> filter)
+        {
+            FilterBy.Add(filter);
+        }
     }
 }
