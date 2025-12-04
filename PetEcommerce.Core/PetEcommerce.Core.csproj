@@ -21,11 +21,4 @@
     <ProjectReference Include="..\PetEcommerce.Service\PetEcommerce.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Feature\Toy\Command\Models\" />
-    <Folder Include="Feature\Toy\Command\Handler\" />
-    <Folder Include="Feature\Toy\Command\Result\" />
-    <Folder Include="Feature\Toy\Command\Validator\" />
-  </ItemGroup>
-
 </Project>
