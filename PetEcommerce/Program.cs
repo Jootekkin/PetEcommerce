@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using PetEcommerce.Core;
+using PetEcommerce.Core.Middleware;
 using PetEcommerce.Infrastrcure;
+using PetEcommerce.Service;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<ApplicationDbContext>(options => 
 //options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString)));
 
-builder.Services.AddInfrastructureDependencies(builder.Configuration);
+builder.Services.AddInfrastructureDependencies(builder.Configuration)
+    .AddServiceDependencyInjection()
+    .AddCoreDependencyInjection();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -25,6 +31,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.MapControllers();
 
